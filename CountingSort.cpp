@@ -12,7 +12,8 @@ void counting_sort(std::vector<int>& array) {
             max = array[i];
         }
     }
-    int counting[max + 1]{0};
+    const int length = max+1;
+    int* counting = new int[length]{0};
     for (int i = 0; i < size; i++) {
         counting[array[i]]++;
     }

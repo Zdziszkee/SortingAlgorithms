@@ -1,7 +1,7 @@
 CC = g++
-CFLAGS = -Wall -Wextra -O3 -pedantic
+CFLAGS = -Wall -Wextra -O3 -pedantic -std=c++17 -Werror=vla
 
-all: Generator.x BubbleSort.x SelectionSort.x InsertionSort.x Benchmark.x CountingSort.x
+all: Generator.x BubbleSort.x SelectionSort.x InsertionSort.x Benchmark.x CountingSort.x Complexity.x
 
 BubbleSort.x: BubbleSort.cpp
 	$(CC) $(CFLAGS) -o BubbleSort.x BubbleSort.cpp
@@ -18,9 +18,10 @@ Benchmark.x: Benchmark.cpp
 	$(CC) $(CFLAGS) -o Benchmark.x Benchmark.cpp
 CountingSort.x: CountingSort.cpp
 	$(CC) $(CFLAGS) -o CountingSort.x CountingSort.cpp
+Complexity.x: Complexity.cpp
+	$(CC) $(CFLAGS) -o Complexity.x Complexity.cpp
 Generate:
 	./Generator.x 10000 100000 > input_10k.txt
-
 BubbleSort:
 	./Generator.x 10000 100000 | ./BubbleSort.x
 
@@ -34,6 +35,7 @@ CountingSort:
 	./Generator.x 1000000 100000 | ./CountingSort.x
 Benchmark:
 	./Generator.x 200000 100000 | ./Benchmark.x
-
+Complexity:
+	./Generator.x 100000 100000 | ./Complexity.x
 clean:
 	rm -f *.x
